@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Homepage</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+      <h1>Homepage</h1>
+    </header>
+    <main>
+      <div class="button-container">
+        <a href="{{ url_for('register') }}" class="button register-button">Register</a>
+        <a href="{{ url_for('remove') }}" class="button remove-button">Remove</a>
+      </div>
+    </main>
+    <footer>
+      &copy; 2023 Cygnet Ltd. All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>

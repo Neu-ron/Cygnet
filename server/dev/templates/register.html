@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Registration</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#email-input').on('input', function() {
+        var email = $(this).val();
+        $.post('/validate_email', {'email': email}, function(data) {
+          if (data.valid) {
+            $('#email-input').removeClass('invalid');
+            $('#email-validation').text('');
+            $('#submit-btn').prop('disabled', false);
+          } else {
+            $('#email-input').addClass('invalid');
+            $('#email-validation').text(data.message);
+            $('#submit-btn').prop('disabled', true);
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+      <h1>User Registration</h1>
+    </header>
+    <main>
+      <form method="POST" action="/register">
+        <div class="form-group">
+          <label for="email-input">Email Address:</label>
+          <input type="email" id="email-input" name="email" required>
+          <span id="email-validation"></span>
+        </div>
+        <div class="form-group">
+          <button id="submit-btn" type="submit" disabled>Register</button>
+        </div>
+      </form>
+    </main>
+    <footer>
+      &copy; 2023 Cygnet Ltd. All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>

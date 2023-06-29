@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Success</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+      <h1>User Registration</h1>
+    </header>
+    <main>
+      <div class="success-message">
+        <h2>You're all set up!</h2>
+        <p>Below is your company key. Keep it safe, secure, and do not share it with any unauthorised party.</p>
+        <br></br>
+        <p>This key is required to authenticate and connect endpoints from your organisation.</p>
+        <br></br>
+        <p>Your key:</p>
+        <p>{{ key }}</p>
+      </div>
+    </main>
+    <footer>
+      &copy; 2023 Cygnet Ltd. All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>

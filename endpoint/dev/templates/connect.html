@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Connect</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#key-input').on('input', function() {
+        var key = $(this).val();
+        $.post('/validate_key', {'key': key}, function(data) {
+          if (data.valid) {
+            $('#key-input').removeClass('invalid');
+            $('#key-validation').text('');
+            $('#submit-btn').prop('disabled', false);
+          } else {
+            $('#key-input').addClass('invalid');
+            $('#key-validation').text(data.message);
+            $('#submit-btn').prop('disabled', true);
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+      <h1>Connect</h1>
+    </header>
+    <main>
+      <form method="POST" action="/connect">
+        <div class="form-group">
+          <label for="key-input">Key:</label>
+          <input type="key" id="key-input" name="key" required>
+          <span id="key-validation"></span>
+        </div>
+        <div class="form-group">
+          <button id="submit-btn" type="submit" disabled>Connect</button>
+        </div>
+      </form>
+    </main>
+    <footer>
+      &copy; 2023 Cygnet Ltd. All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>
